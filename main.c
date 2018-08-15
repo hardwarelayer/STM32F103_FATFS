@@ -82,7 +82,7 @@ int main(void)
   
   fr = f_mount(&fatfs, "", 0);
   
-  fr = f_open(&fil, "great.txt", FA_WRITE | FA_CREATE_NEW);
+  fr = f_open(&fil, "great.txt", FA_WRITE | FA_OPEN_ALWAYS);
   if ( fr == FR_OK || fr == FR_EXIST) {
     /* Seek to end of the file to append data */
     fr = f_lseek(&fil, f_size(&fil));
@@ -90,11 +90,13 @@ int main(void)
       f_close(&fil);
     }
     
-    UINT len;
-    f_write(&fil, "Hello world!", strlen("Hello world!"), &len);
-    
-    /* Close the file */
-    f_close(&fil);
+    if (fr == FR_OK) {
+      UINT len;
+      f_write(&fil, "Hello world!", strlen("Hello world!"), &len);
+      
+      /* Close the file */
+      f_close(&fil);
+    }
   }
   
   /* Infinite loop */

@@ -692,8 +692,8 @@ void disk_timerproc (void)
  * [4:0]   - second/2 0..29
  * so... midnight 2009 is 0x3a000000
  */
-DWORD get_fattime()
-{
-  return (DWORD)((2018-1980)<<25 | 8<<21 | 14<<16 |
-                 (14)<<11 | (13)<<5 | (0));
-}
+//DWORD get_fattime()
+//{
+//  return (DWORD)((2018-1980)<<25 | 8<<21 | 14<<16 |
+//                 (14)<<11 | (13)<<5 | (0));
+//}
